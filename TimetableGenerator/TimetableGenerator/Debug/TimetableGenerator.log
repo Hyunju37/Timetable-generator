@@ -1,0 +1,3 @@
+﻿  class.cpp
+C:\Users\hj\Super\Timetable-generator\TimetableGenerator\TimetableGenerator\class.cpp(63,7): warning C4101: 'loc' :참조되지 않은 지역 변수입니다.
+  TimetableGenerator.vcxproj -> C:\Users\hj\Super\Timetable-generator\TimetableGenerator\Debug\TimetableGenerator.exe
