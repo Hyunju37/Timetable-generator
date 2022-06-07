@@ -7,15 +7,15 @@ class course
 	friend class cell;
 
 private:
-	char title[30];	//displayed
+	char title[10];	
 	
-	//timeslot info
+
 	char day[4];
 	char start_time[6];
 	char end_time[6];
 	
-	//additional info
-	char classroom[10];	//displayed
+	
+	char classroom[8];	
 	char instructor[30];
 
 public:
@@ -26,6 +26,9 @@ public:
 	char* getstime();
 	char* getetime();
 	
+	int dayvalid();
+	int timevalid();
+
 	friend void slot_loc(course temp, cell* loc);
 };
 #endif

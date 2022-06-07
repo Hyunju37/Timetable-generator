@@ -46,21 +46,17 @@ void slot_loc(course temp, cell* loc)
 	int i, j;
 	i = (s_value - 9) * 2;
 	if (start_time[3] == '3') i += 1;
-	//else i += 0;
 
 	j = (e_value - 9) * 2;
 	if (end_time[3] == '3') j += 1;
-	//else j += 0;
 
 	(*loc).start_row = i;
 	(*loc).end_row = j - 1;
 
-	//return loc;
 }
 
 void course::getdata(int i)
 {
-	cell loc;
 
 	cout << "Enter the title of the class(" << i + 1 << "): ";
 	getchar();	//ignore enter
@@ -72,12 +68,6 @@ void course::getdata(int i)
 	cin >> start_time;
 	cout << "Enter the ending time of the class(xx:xx) (" << i + 1 << "): ";
 	cin >> end_time;
-
-	//calculate matching slot location (based start_time, end_time, day)
-
-	// error detection (function -> valid/invalid (inversed or not...))
-	//If there's no problem(no overrlap on timetable) get additional info
-	
 
 	cout << "Enter the instructor's name of the class(" << i + 1 << "): ";
 	getchar();	//ignore enter
@@ -107,3 +97,35 @@ void course::display(int i)
 	cout << i << ": " << title << " / " << instructor << " / " << classroom << "\n";
 }
 
+void slot::storedata(course info)
+{
+	//fill(0->1)
+	flag = 1;
+
+	strcpy(title, info.title);
+	strcpy(classroom, info.classroom);
+}
+
+int course::dayvalid()
+{
+	if (strcmp(day, "MON")!=0 && strcmp(day, "TUE")!=0 && strcmp(day, "WED")!=0 && strcmp(day, "THU")!=0 && strcmp(day, "FRI")!=0) 
+		return 1;
+	else return 0;
+}
+
+int course::timevalid()
+{
+	if (strcmp(start_time, end_time) > 0) return 1;
+	if (strcmp(start_time, "09:00") < 0) return 1;
+	if (strcmp(end_time, "20:00") > 0) return 1;
+	return 0;
+}
+
+void slot::display()
+{
+	cout << title << "(" << classroom << ")";
+	int l = strlen(title) + strlen(classroom) + 2;
+	for (int i = 0; i < 20 - l; i++) {
+		cout << " ";
+	}
+}
